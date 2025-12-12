@@ -98,14 +98,21 @@ Food_image_classification/
 
 # Evaluation Metrics
 Macro F1 Score (Test Set)
-ResNet-101 Final: 0.93855
+
+ResNet-101 Final: **0.93855**
 
 # Confusion Matrix:
+**ResNet101:**
+
 <img width="1500" height="1200" alt="best_resnet101_full_confmat" src="https://github.com/user-attachments/assets/1d2fb9d6-eef8-4633-a850-80b7e6ae1955" />
+
+**EfficientNetB0:**
+
 <img width="1500" height="1200" alt="best_effnetb0_freeze1_confmat" src="https://github.com/user-attachments/assets/bb8b11c3-5900-4d65-aa4b-b1c8bc0f40fd" />
 
 # Grad-CAM Visualizations:
 Shows which regions the CNN focuses on when predicting a class.
+
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/f69a7216-bef0-49e8-933f-f4c43232709c" />
 
 
@@ -113,8 +120,11 @@ Shows which regions the CNN focuses on when predicting a class.
 The following files are inside your 'export' directory:
 
 model_scripted.pt        #TorchScript format (portable)
+
 best_model.pth           #PyTorch state_dict
+
 inference.py             #ready-to-use inference script
+
 sample_predictions.json  #example outputs
 
 # Run Inference (Python)
@@ -164,8 +174,9 @@ if uploaded:
     st.subheader(f"Prediction: {pred}")
 
 
-# Run:
-streamlit run app.py
+**Run:**
+
+**streamlit run app.py**
 
 ✔ 2. Gradio App Example
 import gradio as gr
@@ -181,11 +192,17 @@ gr.Interface(fn=classify, inputs="image", outputs="label").launch()
 ## Project Summary (for submission / PDF)
 
 -Implemented EDA, data organization, and augmentation
+
 -Trained strong baselines (ResNet-50) and advanced CNNs (EffNet, ResNet-101)
+
 -Achieved 93.85% Macro F1 on official test set
+
 -Used Grad-CAM for model interpretability
+
 -Exported a deployable TorchScript model for production
+
 -Created inference engine + optional Streamlit/Gradio apps
+
 
 
 
