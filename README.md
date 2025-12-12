@@ -88,11 +88,13 @@ Food_image_classification/
 └── README.md
 
 # Models Trained & Results
-Model	Validation Macro F1	Test Macro F1	Notes
-ResNet-50 (baseline)	~0.90	0.9368	(Strong baseline)
-EfficientNet-B0	~0.89	0.8997	(Underperformed slightly)
-ResNet-101 (full)	~0.92	0.9385	 (Best-performing model)
-# Thus, Final Model Used for Deployment: ResNet-101
+| Model | Validation Macro F1 | Test Macro F1 | Notes |
+|-------|---------------------|---------------|-------|
+| ResNet-50 (baseline) | ~0.90 | 0.9368 | Strong baseline |
+| EfficientNetB0 | ~0.89 | 0.8997 | Underperformed slightly | 
+| ResNet-101 | ~0.92 | 0.9385 | Best-performing model |
+
+**Thus, Final Model Used for Deployment: ResNet-101**
 
 # Evaluation Metrics
 Macro F1 Score (Test Set)
@@ -184,5 +186,6 @@ gr.Interface(fn=classify, inputs="image", outputs="label").launch()
 -Used Grad-CAM for model interpretability
 -Exported a deployable TorchScript model for production
 -Created inference engine + optional Streamlit/Gradio apps
+
 
 
