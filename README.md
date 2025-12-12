@@ -46,26 +46,45 @@ Spaghetti Bolognese
 
 # Each class includes:
 750 training images
+
 250 test images
 
 # Project Structure
 Food_image_classification/
+
 │
+
 ├── 1_Environment_&_Utilities.ipynb
+
 ├── 2_Data_Preparation_&_Organization.ipynb
+
 ├── 3_EDA_&_Visualizations.ipynb
+
 ├── 4_Training_pipeline_(ResNet_50_baseline).ipynb
+
 ├── 5_Experiments_&_Alternatives_(EffNetB0,ResNet101).ipynb
+
+
 ├── 6_demo_and_export.ipynb
+
 │
+
 ├── export/
+
 │   ├── model_scripted.pt
+
 │   ├── best_model.pth
+
 │   ├── inference.py
+
 │   ├── sample_predictions.json
+
 │
+
 ├── outputs/
+
 ├── outputs_experiments/
+
 └── README.md
 
 # Models Trained & Results
@@ -165,4 +184,5 @@ gr.Interface(fn=classify, inputs="image", outputs="label").launch()
 -Used Grad-CAM for model interpretability
 -Exported a deployable TorchScript model for production
 -Created inference engine + optional Streamlit/Gradio apps
+
 
