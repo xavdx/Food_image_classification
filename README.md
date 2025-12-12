@@ -161,20 +161,20 @@ Run Notebook 6 to generate:
 -Predictions sample
 
 # Deployment Options
-✔ 1. Streamlit App Example
+1. Streamlit App Example
 import streamlit as st
 from inference import Food10Classifier
 from PIL import Image
 
-clf = Food10Classifier()
+clf=Food10Classifier()
 
-st.title("🍽️ Food Image Classifier")
-uploaded = st.file_uploader("Upload a food image", type=["jpg","jpeg","png"])
+st.title("Food Image Classifier")
+uploaded=st.file_uploader("Upload a food image", type=["jpg","jpeg","png"])
 
 if uploaded:
-    img = Image.open(uploaded).convert("RGB")
+    img=Image.open(uploaded).convert("RGB")
     st.image(img, caption="Uploaded Image", use_column_width=True)
-    pred = clf.predict(img)
+    pred=clf.predict(img)
     st.subheader(f"Prediction: {pred}")
 
 
@@ -182,11 +182,11 @@ if uploaded:
 
 **streamlit run app.py**
 
-✔ 2. Gradio App Example
+2. Gradio App Example
 import gradio as gr
 from inference import Food10Classifier
 
-clf = Food10Classifier()
+clf=Food10Classifier()
 
 def classify(img):
     return clf.predict(img)
@@ -206,6 +206,7 @@ gr.Interface(fn=classify, inputs="image", outputs="label").launch()
 -Exported a deployable TorchScript model for production
 
 -Created inference engine + optional Streamlit/Gradio apps
+
 
 
 
