@@ -6,28 +6,43 @@ A complete end-to-end deep learning project to classify 10 types of food images 
 # This repository includes:
 
 -Full training pipeline
+
 -Experiments with multiple pretrained CNNs
+
 -Macro F1 score evaluation
+
 -Grad-CAM visualizations
+
 -Exported model for deployment (TorchScript + inference script)
+
 -Ready-to-use inference module
 
-# Dataset=
+# Dataset
 Source:
+
 https://drive.google.com/drive/folders/1ZwCHJhAZU_FposqaA8iQHi_TZ2SUz2R9?usp=drive_link
 
 # The dataset contains ~10,000 images across 10 classes:
 
-cannoli
-ceviche
-crab_cakes
-frozen_yogurt
-gnocchi
-grilled_cheese_sandwich
-onion_rings
-pork_chop
-ravioli
-spaghetti_bolognese
+Cannoli
+
+Ceviche 
+
+Crab Cakes
+
+Frozen Yogurt 
+
+Gnocchi 
+
+Grilled Cheese Sandwich 
+
+Onion Rings 
+
+Pork Chop 
+
+Ravioli 
+
+Spaghetti Bolognese
 
 # Each class includes:
 750 training images
@@ -150,3 +165,4 @@ gr.Interface(fn=classify, inputs="image", outputs="label").launch()
 -Used Grad-CAM for model interpretability
 -Exported a deployable TorchScript model for production
 -Created inference engine + optional Streamlit/Gradio apps
+
