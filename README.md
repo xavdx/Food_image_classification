@@ -129,9 +129,12 @@ sample_predictions.json  #example outputs
 
 # Run Inference (Python)
 Option 1- Use the inference.py
+
 python3 export/inference.py
 
+
 Option 2- Import into your own script
+
 from inference import Food10Classifier
 
 clf=Food10Classifier()
@@ -139,8 +142,9 @@ prediction=clf.predict("path_to_image.jpg")
 print(prediction)
 
 # Requirements
-Install dependencies:
-pip install torch torchvision timm pillow numpy scikit-learn matplotlib seaborn
+**Install dependencies:**
+
+*pip install torch torchvision timm pillow numpy scikit-learn matplotlib seaborn*
 
 # How to Reproduce the Full Training
 1️) Run notebooks in order:
@@ -202,6 +206,7 @@ gr.Interface(fn=classify, inputs="image", outputs="label").launch()
 -Exported a deployable TorchScript model for production
 
 -Created inference engine + optional Streamlit/Gradio apps
+
 
 
 
