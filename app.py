@@ -6,29 +6,22 @@ from torchvision import transforms
 from PIL import Image
 import timm
 import os
-
-# -------------------------------
-# CONFIG
-# -------------------------------
+#CONFIG
 st.set_page_config(
     page_title="Food Image Classifier",
-    layout="centered"
-)
+    layout="centered")
 
-MODEL_DIR = "export"   # folder where model_scripted.pt or best_model.pth is stored
-TORCHSCRIPT_PATH = os.path.join(MODEL_DIR, "model_scripted.pt")
-STATE_DICT_PATH = os.path.join(MODEL_DIR, "best_model.pth")
-CLASSES = [
+MODEL_DIR="export"   # folder where model_scripted.pt or best_model.pth is stored
+TORCHSCRIPT_PATH=os.path.join(MODEL_DIR, "model_scripted.pt")
+STATE_DICT_PATH=os.path.join(MODEL_DIR, "best_model.pth")
+CLASSES=[
     "cannoli", "ceviche", "crab_cakes", "frozen_yogurt", "gnocchi",
     "grilled_cheese_sandwich", "onion_rings", "pork_chop",
-    "ravioli", "spaghetti_bolognese"
-]
+    "ravioli", "spaghetti_bolognese"]
 
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-# -------------------------------
-# LAZY MODEL LOADER (cached)
-# -------------------------------
+#LAZY MODEL LOADER (cached)
 @st.cache_resource
 def load_model_cached():
     """
@@ -43,8 +36,8 @@ def load_model_cached():
 
     # Fall back to state_dict
     if os.path.exists(STATE_DICT_PATH):
-        model = timm.create_model("resnet101", pretrained=False, num_classes=len(CLASSES))
-        state = torch.load(STATE_DICT_PATH, map_location=device)
+        model=timm.create_model("resnet101", pretrained=False, num_classes=len(CLASSES))
+        state=torch.load(STATE_DICT_PATH, map_location=device)
         # If your state dict was saved as {'model': state_dict} you'll need to adapt:
         if isinstance(state, dict) and "state_dict" in state:
             state = state["state_dict"]
@@ -78,11 +71,9 @@ def predict(img):
     model, source = load_model_cached()
     if model is None:
         raise FileNotFoundError(
-            f"No model found. Expected TorchScript at {TORCHSCRIPT_PATH} or state_dict at {STATE_DICT_PATH}."
-        )
+            f"No model found. Expected TorchScript at {TORCHSCRIPT_PATH} or state_dict at {STATE_DICT_PATH}.")
 
-    img_t = transform(img).unsqueeze(0).to(device)
-
+    img_t=transform(img).unsqueeze(0).to(device)
     with torch.no_grad():
         logits = model(img_t)
         # handle different model outputs (scripted vs plain)
@@ -95,18 +86,15 @@ def predict(img):
     top3 = [(CLASSES[i], float(probs[i])) for i in top3_idx]
     return top3, probs, source
 
-# -------------------------------
-# STREAMLIT UI
-# -------------------------------
+#STREAMLIT UI
 st.title("Food Image Classifier")
 st.write("Upload a food image and let the model classify it!")
-
-uploaded = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
+uploaded=st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 if uploaded:
-    img = Image.open(uploaded).convert("RGB")
+    img=Image.open(uploaded).convert("RGB")
     st.image(img, caption="Uploaded Image", use_column_width=True)
 
-    # Provide a manual predict button to avoid auto-blocking when upload occurs
+    #Provide a manual predict button to avoid auto-blocking when upload occurs
     if st.button("Classify image"):
         with st.spinner("Loading model and running inference (this may take a few seconds)..."):
             try:
@@ -125,8 +113,7 @@ if uploaded:
                     st.write(f"- **{cls}** — {prob*100:.2f}%")
 
                 with st.expander("See full probability distribution"):
-                    prob_dict = {CLASSES[i]: float(full_probs[i]) for i in range(len(CLASSES))}
+                    prob_dict={CLASSES[i]: float(full_probs[i]) for i in range(len(CLASSES))}
                     st.json(prob_dict)
-
 st.write("---")
 st.caption("Built using PyTorch, Timm & Streamlit")
